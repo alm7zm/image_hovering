@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* 1. THE CONTAINER */
+    .photo-container {
+      position: relative;
+      width: 600px; 
+      max-width: 100%;
+    }
+
+    /* 2. THE BASE IMAGE (Grayscale) */
+    .gray-img {
+      width: 100%;
+      display: block;
+ 
+    }
+
+    /* 3. THE COLORED CUTOUTS (Hidden by default) */
+    .color-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      
+      /* Make them invisible initially */
+      opacity: 0; 
+      
+      /* Smooth fade in/out */
+      transition: opacity 0.3s ease; 
+      
+      /* IMPORTANT: This stops the invisible images from blocking your mouse! */
+      pointer-events: none; 
+      z-index: 2;
+    }
+
+    /* 4. INVISIBLE HOVER BOXES */
+    .hover-box {
+      position: absolute;
+      z-index: 3; 
+      cursor: pointer;
+      /* background-color: rgba(255, 0, 0, 0.4); /* Delete slashes to see the boxes */
+    }
+
+    /* Box for the guy on the LEFT */
+    .person1 {
+      top: 15%;
+      left: 20%;
+      width: 35%;
+      height: 50%;
+    }
+
+    /* Box for the guy on the RIGHT */
+    .person2 {
+      top: 20%;
+      left: 55%;
+      width: 35%;
+      height: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="photo-container">
+    
+    <img src="gray_image.png" class="gray-img">
+    
+    <img src="left_colored.jpg" id="color-left" class="color-layer">
+    <img src="right_colored.jpg" id="color-right" class="color-layer">
+
+    <div class="hover-box person1" onmouseover="showPerson('color-left')" onmouseout="hidePerson('color-left')"></div>
+    <div class="hover-box person2" onmouseover="showPerson('color-right')" onmouseout="hidePerson('color-right')"></div>
+    
+  </div>
+
+  <script>
+    // This function takes the ID of the person we want, and changes their opacity to 1 (fully visible)
+    function showPerson(personId) {
+      document.getElementById(personId).style.opacity = "1";
+    }
+
+    // This function takes the ID and changes their opacity back to 0 (invisible)
+    function hidePerson(personId) {
+      document.getElementById(personId).style.opacity = "0";
+    }
+  </script>
+
+</body>
+</html>
